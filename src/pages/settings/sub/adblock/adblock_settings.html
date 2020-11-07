@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Adblock Settings</title>
+        <link
+            href="../../../../../src/assets/css/materialize.min.css"
+            media="screen,projection"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../../src/assets/css/material_icons.css"
+            rel="stylesheet"
+        />
+        <link
+            href="../../../../../src/assets/css/styles.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link href="./adblock_settings.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div class="center">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea
+                        id="settings-adblock-list"
+                        class="materialize-textarea white-text"
+                    ></textarea>
+                    <label for="settings-adblock-list"
+                        >Sources (one-per-line)</label
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <button
+                    class="btn red"
+                    id="btn-save"
+                    style="text-transform: none;"
+                >
+                    <span
+                        i18n="i18n_LABEL_SETTINGS_TAB_LAST_FM_SCROBBLER_AUTHORIZE"
+                    ></span>
+                </button>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="../../../../../src/assets/js/materialize.min.js"></script>
+
+<script src="./adblock_settings.js">
+    //require('./adblock_settings.js')
+    //M.updateTextFields();
+    //M.textareaAutoResize(document.getElementById('settings-adblock-list'));
+    /*setTimeout(function() {
+    	M.textareaAutoResize($('#settings-adblock-list'));
+    }, 0);*/
+</script>
