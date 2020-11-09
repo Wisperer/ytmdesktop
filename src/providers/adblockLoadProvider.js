@@ -28,7 +28,7 @@ function start() {
             adblockSettings.list,
             {},
             {
-                path: 'engine.bin',
+                path: 'adblockengine.bin',
                 read: fs.readFile,
                 write: fs.writeFile,
             }
@@ -45,7 +45,7 @@ function stop() {
     if (blocker && blocker.disableBlockingInSession)
         blocker.disableBlockingInSession(session.defaultSession)
     blocker = null
-    fs.unlink('engine.bin', (err) => {
+    fs.unlink('adblockengine.bin', (err) => {
         if (err) {
             console.error(err)
         }
