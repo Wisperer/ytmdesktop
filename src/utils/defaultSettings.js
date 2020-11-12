@@ -73,9 +73,16 @@ settingsProvider.setInitialValue('discord-presence-settings', {
 settingsProvider.setInitialValue('adblock-settings', {
     list: [
         'https://easylist-downloads.adblockplus.org/easylist.txt',
+        'https://easylist-downloads.adblockplus.org/easyprivacy.txt',
         'https://raw.githubusercontent.com/kbinani/adblock-youtube-ads/master/signed.txt',
         'https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt',
+        'https://raw.github.com/uBlockOrigin/uAssets/master/filters/filters.txt',
+        'https://raw.github.com/uBlockOrigin/uAssets/master/filters/privacy.txt',
+        'https://raw.github.com/uBlockOrigin/uAssets/master/filters/badware.txt',
+        'https://raw.github.com/uBlockOrigin/uAssets/master/filters/annoyances.txt',
+        'https://raw.github.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt',
         'https://raw.github.com/uBlockOrigin/uAssets/master/filters/unbreak.txt',
+        'https://filters.adtidy.org/extension/ublock/filters/2.txt',
     ],
 })
 
