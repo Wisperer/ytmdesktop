@@ -34,6 +34,7 @@ const infoPlayerProvider = require('./src/providers/infoPlayerProvider')
 const rainmeterNowPlaying = require('./src/providers/rainmeterNowPlaying')
 const companionServer = require('./src/providers/companionServer')
 const discordRPC = require('./src/providers/discordRpcProvider')
+const adblockLoad = require('./src/providers/adblockLoadProvider')
 const mprisProvider = require('./src/providers/mprisProvider')
 /* Variables =========================================================================== */
 const defaultUrl = 'https://music.youtube.com'
@@ -845,6 +846,14 @@ function createWindow() {
         }
     })
 
+    settingsProvider.onDidChange('settings-adblock', (data) => {
+        if (data.newValue) {
+            adblockLoad.start()
+        } else {
+            adblockLoad.stop()
+        }
+    })
+
     settingsProvider.onDidChange('settings-custom-css-app', (data) => {
         if (data.newValue) {
             loadCustomCSSApp()
@@ -1022,6 +1031,10 @@ function createWindow() {
 
             case 'show-discord-settings':
                 windowDiscordSettings()
+                break
+
+            case 'show-adblock-settings':
+                windowAdblockSettings()
                 break
 
             case 'show-shortcut-buttons-settings':
@@ -1403,6 +1416,41 @@ function createWindow() {
                     'page=settings/sub/discord/discord_settings&icon=settings&title=' +
                     __.trans('LABEL_SETTINGS_DISCORD') +
                     '&hide=btn-minimize,btn-maximize',
+            }
+        )
+    }
+
+    function windowAdblockSettings() {
+        const adblock = new BrowserWindow({
+            //parent: mainWindow,
+            icon: iconDefault,
+            modal: false, //
+            frame: windowConfig.frame,
+            titleBarStyle: windowConfig.titleBarStyle,
+            center: true,
+            resizable: true,
+            backgroundColor: '#232323',
+            width: 700,
+            minWidth: 600,
+            height: 800,
+            minHeight: 420,
+            autoHideMenuBar: false, //
+            skipTaskbar: false, //
+            webPreferences: {
+                nodeIntegration: true,
+                webviewTag: true,
+                enableRemoteModule: true,
+            },
+        })
+
+        adblock.loadFile(
+            path.join(
+                __dirname,
+                './src/pages/shared/window-buttons/window-buttons.html'
+            ),
+            {
+                search:
+                    'page=settings/sub/adblock/adblock_settings&icon=settings&title=AdBlock&hide=btn-minimize,btn-maximize',
             }
         )
     }
@@ -1985,6 +2033,10 @@ if (settingsProvider.get('settings-rainmeter-web-now-playing')) {
 
 if (settingsProvider.get('settings-discord-rich-presence')) {
     discordRPC.start()
+}
+
+if (settingsProvider.get('settings-adblock')) {
+    adblockLoad.start()
 }
 
 ipcMain.on('set-audio-output-list', (_, data) => {

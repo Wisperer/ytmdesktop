@@ -17,6 +17,7 @@ const elementBtnOpenCompanionServer = document.getElementById(
     'btn-open-companion-server'
 )
 const elementBtnDiscordSettings = document.getElementById('btn-discord-setting')
+const elementBtnAdblockSettings = document.getElementById('btn-adblock-setting')
 
 const elementBtnShortcutButtonsSettings = document.getElementById(
     'btn-shortcut-buttons-setting'
@@ -130,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ipc.send('update-tray')
     })
     initElement('settings-discord-rich-presence', 'click')
+    initElement('settings-adblock', 'click')
     initElement('settings-app-language', 'change', showRelaunchButton)
     initElement('settings-clipboard-read', 'click', () => {
         ipc.send('switch-clipboard-watcher')
@@ -207,6 +209,12 @@ if (elementBtnLastFmLogin) {
 if (elementBtnDiscordSettings) {
     elementBtnDiscordSettings.addEventListener('click', function () {
         ipc.send('window', { command: 'show-discord-settings' })
+    })
+}
+
+if (elementBtnAdblockSettings) {
+    elementBtnAdblockSettings.addEventListener('click', function () {
+        ipc.send('window', { command: 'show-adblock-settings' })
     })
 }
 
